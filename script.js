@@ -5,9 +5,6 @@ var placesApi = 'https://places.googleapis.com/v1/places/GyuEmsRBfy61i59si0?fiel
 
 // DATA (Global Variables or Imported Data)
 
-
-
-
 // FUNCTIONS (Helper Functions)
 function getApi(placesApi) {
   
@@ -16,16 +13,15 @@ function getApi(placesApi) {
       console.log(response);
      
       return response.json();
-    });
+    })
+      .then (function(data) {
+      console.log(data);
+        })
   }
 
 
 
 // USER INTERACTIONS
-
-
-
-
 
 
 // INITIALIZATION
