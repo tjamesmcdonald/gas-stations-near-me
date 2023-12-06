@@ -1,2 +1,6 @@
 /* PROJECT: FIND GAS STATION */
 
+#map {
+    height: 500px;
+    margin-left: 5px;
+}
