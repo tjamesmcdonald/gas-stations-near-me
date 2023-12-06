@@ -1,30 +1,12 @@
+let map;
 
-//DEPENDENCIES (DOM Elements or Server Packages)
-    // var placesApi = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCF4H0RZ-2IdsEooyswERhgPvkGBXVZF6QY&libraries=places&callback=initMap';
+async function initMap() {
+  const { Map } = await google.maps.importLibrary("maps");
 
-//DATA (Global Variables or Imported Data)
+  map = new Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
+}
 
-
-//FUNCTIONS (Helper Functions)
-    function initMap() {
-  
-        fetch('https://maps.googleapis.com/maps/api/js?key=AIzaSyCF4H0RZ-2IdsEooyswERhgPvkGBXVZF6Q&libraries=places&callback=initMap')
-        .then(function (response) {
-            console.log(response);
-            return response.json();
-        })
-        .then (function(data) {
-            console.log(data);
-        });
-    }
-
-
-
-
-
-
-//USER INTERACTIONS
-
-//INITIALIZATION
-    initMap();
-
+initMap();
