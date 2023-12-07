@@ -18,6 +18,13 @@ This application helps the user find the nearest gas station in area.
 
 
 ## Technologies Used
+- Google APIs
+- Bootstrap
+- VScode
+- Github
+- Git Bash
+- MAC OS
+- Windows OS
 
 
 
