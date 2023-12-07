@@ -8,7 +8,7 @@ let map, infoWindow;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
-    zoom: 6,
+    zoom: 15,
   });
   infoWindow = new google.maps.InfoWindow();
 
@@ -80,10 +80,19 @@ function createMarker(place) {
     map,
     position: place.geometry.location,
   });
-
+  // a user clicks on a marker
   google.maps.event.addListener(marker, "click", () => {
-    infowindow.setContent(place.name || "");
-    infowindow.open(map);
+    // the location of the place
+    var position = {
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng()
+    }
+    infoWindow.setPosition(position)
+    // put the place name on the info window
+    infoWindow.setContent(place.name || "");
+    // show the info window
+    infoWindow.open(map);
+    console.log("clicked a pin")
   });
   
 }
