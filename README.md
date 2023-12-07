@@ -38,8 +38,8 @@
 - Places API:  https://developers.google.com/maps/documentation/places/web-service
 - Places Library: https://developers.google.com/maps/documentation/javascript/places
 - Google Map Marker: https://developers.google.com/maps/documentation/javascript/adding-a-google-map
-- https://developers.google.com/maps/documentation/javascript/geolocation
-- https://developers.google.com/maps/documentation/javascript/examples/place-search
+- Geolocation. Displaying User or Device Position:  https://developers.google.com/maps/documentation/javascript/geolocation
+- Place Searches: https://developers.google.com/maps/documentation/javascript/examples/place-search
 
 
 
