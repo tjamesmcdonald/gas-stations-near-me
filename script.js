@@ -1,5 +1,6 @@
 let map;
-
+let currentLat;
+let currentLng;
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
 
