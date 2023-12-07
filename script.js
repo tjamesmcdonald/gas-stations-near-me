@@ -18,7 +18,7 @@ function initMap() {
   locationButton.classList.add("custom-map-control-button");
   // map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   header.appendChild(locationButton);
-  showGasStations(map);
+;
   locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -33,6 +33,7 @@ function initMap() {
           infoWindow.setContent("Location found.");
           infoWindow.open(map);
           map.setCenter(pos);
+          showGasStations(map)
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
@@ -46,13 +47,21 @@ function initMap() {
 }
 
 function showGasStations(map) {
+  console.log(map)
+  console.log(map.center.lat())
+  var lat = map.center.lat()
+  var lng = map.center.lng()
+  var location = new google.maps.LatLng(lat, lng);
   const request = {
-    query: "Gas Stations",
+    keyword: "Gas Stations",
     fields: ["name", "geometry"],
+    location,
+    radius: 1000
   };
 
   service = new google.maps.places.PlacesService(map);
-  service.findPlaceFromQuery(request, (results, status) => {
+  service.nearbySearch(request, (results, status) => {
+    console.log(results)
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       for (let i = 0; i < results.length; i++) {
         createMarker(results[i]);
@@ -65,6 +74,18 @@ function showGasStations(map) {
 
 function createMarker(place) {
   console.log(place);
+  if (!place.geometry || !place.geometry.location) return;
+
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+  });
+
+  google.maps.event.addListener(marker, "click", () => {
+    infowindow.setContent(place.name || "");
+    infowindow.open(map);
+  });
+  
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
