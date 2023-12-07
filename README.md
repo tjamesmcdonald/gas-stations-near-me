@@ -1,11 +1,14 @@
 # PROJECT 1: GAS STATION NEAR ME
 
-## Description
 
-### This application helps user to find the nearest gas station in area. 
+## Description
+This application helps the user find the nearest gas station in area. 
+
 
 ## Project Screen Shot
 ![gas-stations-near-me](link here)
+
+
 
 ## Links to Deployed Project
 - Deployed Project:  https://tjamesmcdonald.github.io/gas-stations-near-me/
