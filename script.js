@@ -15,7 +15,7 @@ function initMap() {
   const locationButton = document.createElement("button");
 
   locationButton.textContent = "Pan to Current Location";
-  locationButton.classList.add("custom-map-control-button");
+  locationButton.classList.add("custom-map-control-button button");
   // map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   header.appendChild(locationButton);
 ;
