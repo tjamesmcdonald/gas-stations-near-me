@@ -1,22 +1,3 @@
-// let map;
-
-// function showGooglePlacesMarkers(map, query) {
-//   var service = google.maps.
-// }
-
-// async function initMap() {
-//   const { Map } = await google.maps.importLibrary("maps");
-
-//   map = new Map(document.getElementById("map"), {
-//     center: { lat: -34.397, lng: 150.644 },
-//     zoom: 8,
-//   });
-
-//   showGooglePlacesMarkers(map, query)
-// }
-
-// initMap();
-
 // Note: This example requires that you consent to location sharing when
 // prompted by your browser. If you see the error "The Geolocation service
 // failed.", it means you probably did not give permission for the browser to
