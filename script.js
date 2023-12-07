@@ -2,7 +2,7 @@
 // prompted by your browser. If you see the error "The Geolocation service
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
-var header = document.querySelector("#header")
+var header = document.querySelector("#header");
 let map, infoWindow;
 
 function initMap() {
@@ -17,7 +17,8 @@ function initMap() {
   locationButton.textContent = "Pan to Current Location";
   locationButton.classList.add("custom-map-control-button");
   // map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-  header.appendChild(locationButton)
+  header.appendChild(locationButton);
+  showGasStations(map);
   locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -35,7 +36,7 @@ function initMap() {
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
-        },
+        }
       );
     } else {
       // Browser doesn't support Geolocation
@@ -44,12 +45,34 @@ function initMap() {
   });
 }
 
+function showGasStations(map) {
+  const request = {
+    query: "Gas Stations",
+    fields: ["name", "geometry"],
+  };
+
+  service = new google.maps.places.PlacesService(map);
+  service.findPlaceFromQuery(request, (results, status) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+      for (let i = 0; i < results.length; i++) {
+        createMarker(results[i]);
+      }
+
+      map.setCenter(results[0].geometry.location);
+    }
+  });
+}
+
+function createMarker(place) {
+  console.log(place);
+}
+
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(
     browserHasGeolocation
       ? "Error: The Geolocation service failed."
-      : "Error: Your browser doesn't support geolocation.",
+      : "Error: Your browser doesn't support geolocation."
   );
   infoWindow.open(map);
 }
