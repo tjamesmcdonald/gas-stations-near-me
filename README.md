@@ -19,7 +19,7 @@ This application helps the user find the nearest gas station in area.
 
 ## Technologies Used
 - Google APIs
-- Bootstrap
+- Bulma.io
 - VScode
 - Github
 - Git Bash
@@ -50,6 +50,8 @@ This application helps the user find the nearest gas station in area.
 - Google Map Marker: https://developers.google.com/maps/documentation/javascript/adding-a-google-map
 - Geolocation. Displaying User or Device Position:  https://developers.google.com/maps/documentation/javascript/geolocation
 - Place Searches: https://developers.google.com/maps/documentation/javascript/examples/place-search
+- Markers with Image Icon: https://developers.google.com/maps/documentation/javascript/markers
+
 
 
 
