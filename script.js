@@ -77,7 +77,7 @@ function createMarker(place) {
   console.log(place);
   if (!place.geometry || !place.geometry.location) return;
   const image =
-    "./gas-station-icon.png";
+    "./gas-station-red-icon.png";
   const marker = new google.maps.Marker({
     map,
     position: place.geometry.location,
