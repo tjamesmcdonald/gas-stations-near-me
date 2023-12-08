@@ -84,10 +84,12 @@ function showGasStations(map) {
 function createMarker(place) {
   console.log(place);
   if (!place.geometry || !place.geometry.location) return;
-
+  const image =
+    "./gas-station-red-icon.png";
   const marker = new google.maps.Marker({
     map,
     position: place.geometry.location,
+    icon: image
   });
   // a user clicks on a marker
   google.maps.event.addListener(marker, "click", () => {
