@@ -8,7 +8,7 @@ let map, infoWindow;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
-    zoom: 6,
+    zoom: 15,
   });
   infoWindow = new google.maps.InfoWindow();
 
@@ -16,9 +16,10 @@ function initMap() {
 
   locationButton.textContent = "Pan to Current Location";
   locationButton.classList.add("custom-map-control-button");
+  locationButton.classList.add("button");
   // map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   header.appendChild(locationButton);
-  showGasStations(map);
+;
   locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -33,6 +34,7 @@ function initMap() {
           infoWindow.setContent("Location found.");
           infoWindow.open(map);
           map.setCenter(pos);
+          showGasStations(map)
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
@@ -46,13 +48,21 @@ function initMap() {
 }
 
 function showGasStations(map) {
+  console.log(map)
+  console.log(map.center.lat())
+  var lat = map.center.lat()
+  var lng = map.center.lng()
+  var location = new google.maps.LatLng(lat, lng);
   const request = {
-    query: "Gas Stations",
+    keyword: "Gas Stations",
     fields: ["name", "geometry"],
+    location,
+    radius: 1000
   };
 
   service = new google.maps.places.PlacesService(map);
-  service.findPlaceFromQuery(request, (results, status) => {
+  service.nearbySearch(request, (results, status) => {
+    console.log(results)
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       for (let i = 0; i < results.length; i++) {
         createMarker(results[i]);
@@ -65,6 +75,27 @@ function showGasStations(map) {
 
 function createMarker(place) {
   console.log(place);
+  if (!place.geometry || !place.geometry.location) return;
+
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+  });
+  // a user clicks on a marker
+  google.maps.event.addListener(marker, "click", () => {
+    // the location of the place
+    var position = {
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng()
+    }
+    infoWindow.setPosition(position)
+    // put the place name on the info window
+    infoWindow.setContent(place.name || "");
+    // show the info window
+    infoWindow.open(map);
+    console.log("clicked a pin")
+  });
+  
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
