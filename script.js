@@ -77,7 +77,7 @@ function createMarker(place) {
   console.log(place);
   if (!place.geometry || !place.geometry.location) return;
   const image =
-    "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+    "./gas-station-icon.png";
   const marker = new google.maps.Marker({
     map,
     position: place.geometry.location,
