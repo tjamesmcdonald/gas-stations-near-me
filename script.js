@@ -2,8 +2,10 @@
 // prompted by your browser. If you see the error "The Geolocation service
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
+var searchResultsData 
 var header = document.querySelector("#header");
 let map, infoWindow;
+var searchResultsEl = document.querySelector("#searchResults")
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -56,16 +58,19 @@ function showGasStations(map) {
   const request = {
     keyword: "Gas Stations",
     fields: ["name", "geometry"],
+    openNow: true,
     location,
     radius: 5000
   };
 
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, (results, status) => {
-    console.log(results)
+    searchResultsData = results
+    searchResultsEl.innerHTML = ""
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       for (let i = 0; i < results.length; i++) {
         createMarker(results[i]);
+        renderSearchResults2(results[i].name, "body", i)
       }
 
       map.setCenter(results[0].geometry.location);
@@ -107,5 +112,47 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   );
   infoWindow.open(map);
 }
+
+// function renderSearchResults() {
+//   var searchResult = document.createElement("div")
+//   var accordionItem = document.createElement("div")
+//   searchResult.classList.add("accordion")
+//   accordionItem.classList.add("")
+
+// }
+
+function renderSearchResults2(name, body, i) {
+  var html = `
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapse${i}"
+          aria-expanded="false"
+          aria-controls="collapse${i}"
+        >
+          ${name}
+        </button>
+      </h2>
+      <div
+        id="collapse${i}"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
+          ${body}
+        </div>
+      </div>
+    </div>
+  `
+
+  var accordianItemDiv = document.createElement('div')
+  accordianItemDiv.innerHTML = html
+  searchResultsEl.appendChild(accordianItemDiv)
+  
+}
+
 
 window.initMap = initMap;
