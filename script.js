@@ -60,7 +60,7 @@ function showGasStations(map) {
     fields: ["name", "geometry"],
     openNow: true,
     location,
-    radius: 5000
+    rankBy: google.maps.places.RankBy.DISTANCE
   };
 
   service = new google.maps.places.PlacesService(map);
@@ -68,9 +68,12 @@ function showGasStations(map) {
     searchResultsData = results
     searchResultsEl.innerHTML = ""
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-      for (let i = 0; i < results.length; i++) {
+      for (let i = 0; i < 10; i++) {
         createMarker(results[i]);
         renderSearchResults2(results[i].name, "body", i)
+        $(`#accordion-btn-num${i}`).on("click", function() {
+          map.setCenter(results[i].geometry.location);
+        })
       }
 
       map.setCenter(results[0].geometry.location);
@@ -126,6 +129,7 @@ function renderSearchResults2(name, body, i) {
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button
+          id="accordion-btn-num${i}"
           class="accordion-button collapsed"
           type="button"
           data-bs-toggle="collapse"
