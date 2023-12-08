@@ -19,7 +19,7 @@ This application helps the user find the nearest gas station in area.
 
 ## Technologies Used
 - Google APIs
-- Bootstrap
+- Bulma.io
 - VScode
 - Github
 - Git Bash
