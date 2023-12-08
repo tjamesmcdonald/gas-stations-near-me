@@ -57,7 +57,7 @@ function showGasStations(map) {
     keyword: "Gas Stations",
     fields: ["name", "geometry"],
     location,
-    radius: 1000
+    radius: 5000
   };
 
   service = new google.maps.places.PlacesService(map);
