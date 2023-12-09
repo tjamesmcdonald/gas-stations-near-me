@@ -71,8 +71,8 @@ function showGasStations(map) {
         createMarker(results[i]);
         let price = results[i].price_level || "no price found";
         let vicinity = results[i].vicinity;
-        let rating = results[i].rating;
-        body = `price : ${price},
+        let rating = `${results[i].rating}/5`;
+        body = `price_level : ${price} out of 5,
         <br> address : ${vicinity},
         <br> rating : ${rating},`;
         renderSearchResults2(results[i].name, body, i);
