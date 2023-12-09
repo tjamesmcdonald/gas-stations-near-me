@@ -14,11 +14,11 @@
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
     <link rel="stylesheet" href="./style.css" />
-    <title>Gas Stations Near Me</title>
+    <title>Gas Tank Reads E mergency</title>
   </head>
   <body>
-    <header id="header" class="container columns is-gapless mt-5">
-      <p class="column is-2">Gas Checker</p>
+    <header id="header" class="container columns is-gapless mt-5 is-vcentered">
+      <p class="column is-2 is-centered mb-2 content is-large has-text-danger">Running on bingo fuel?</p>
       <!-- <input
         class="column is-4 input"
         type="text"
@@ -26,11 +26,11 @@
       />
       <button class="column is-2 button">Search</button> -->
     </header>
-    <div class="container columns">
+    <div class="container columns is-vcentered is-centered">
       <div class="column is-4 search results">
-        Search Results go here
+        <p class="content is-large has-text-danger">Where to find the closest Pump: </p>
         <div id="searchResults" class="accordion" id="accordionExample">
-          <div class="accordion-item">
+          <!-- <div class="accordion-item">
             <h2 class="accordion-header">
               <button
                 class="accordion-button"
@@ -119,13 +119,13 @@
                 custom CSS or overriding our default variables. It's also worth
                 noting that just about any HTML can go within the
                 <code>.accordion-body</code>, though the transition does limit
-                overflow.
-              </div>
-            </div>
-          </div>
+                overflow. -->
+              <!-- </div>
+            </div> -->
+          <!-- </div> -->
         </div>
       </div>
-      <div id="map" class="column is-8" style="height: 500"></div>
+      <div id="map" class="column is-8"></div>
     </div>
   </body>
   <!-- <script

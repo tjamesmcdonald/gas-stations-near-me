@@ -9,16 +9,18 @@ var searchResultsEl = document.querySelector("#searchResults");
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
+    center: { lat: 40.807, lng: -73.962 },
     zoom: 15,
   });
   infoWindow = new google.maps.InfoWindow();
 
   const locationButton = document.createElement("button");
 
-  locationButton.textContent = "Pan to Current Location";
+  locationButton.textContent = "Find the closest pitstop";
   locationButton.classList.add("custom-map-control-button");
   locationButton.classList.add("button");
+  locationButton.classList.add("is-warning");
+  locationButton.classList.add("is-large");
   // map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   header.appendChild(locationButton);
   locationButton.addEventListener("click", () => {
@@ -32,7 +34,7 @@ function initMap() {
           };
 
           infoWindow.setPosition(pos);
-          infoWindow.setContent("Location found.");
+          infoWindow.setContent("Here I Am");
           infoWindow.open(map);
           map.setCenter(pos);
           showGasStations(map);
@@ -69,12 +71,12 @@ function showGasStations(map) {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       for (let i = 0; i < 10; i++) {
         createMarker(results[i]);
-        let price = results[i].price_level || "no price found";
+        let price = results[i].price_level || "No Rating found";
         let vicinity = results[i].vicinity;
         let rating = results[i].rating;
-        body = `price : ${price},
-        <br> address : ${vicinity},
-        <br> rating : ${rating},`;
+        body = `Price Rating (out of 5): ${price},
+        <br> Street Address : ${vicinity},
+        <br> Customer service Rating (out of 5): ${rating},`;
         renderSearchResults2(results[i].name, body, i);
 
         $(`#accordion-btn-num${i}`).on("click", function () {
@@ -143,7 +145,7 @@ function renderSearchResults2(name, body, i) {
           aria-expanded="false"
           aria-controls="collapse${i}"
         >
-          ${name}
+          Station Name: ${name}
         </button>
       </h2>
       <div
