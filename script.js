@@ -1,7 +1,3 @@
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
 var searchResultsData;
 var header = document.querySelector("#header");
 let map, infoWindow, body;
@@ -9,17 +5,18 @@ var searchResultsEl = document.querySelector("#searchResults");
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
+    center: { lat: 40.807, lng: -73.962 },
     zoom: 15,
   });
   infoWindow = new google.maps.InfoWindow();
 
   const locationButton = document.createElement("button");
 
-  locationButton.textContent = "Pan to Current Location";
+  locationButton.textContent = "Find the closest pitstop";
   locationButton.classList.add("custom-map-control-button");
   locationButton.classList.add("button");
-  // map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+  locationButton.classList.add("is-warning");
+  locationButton.classList.add("is-large");
   header.appendChild(locationButton);
   locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
@@ -32,7 +29,7 @@ function initMap() {
           };
 
           infoWindow.setPosition(pos);
-          infoWindow.setContent("Location found.");
+          infoWindow.setContent("Here I Am");
           infoWindow.open(map);
           map.setCenter(pos);
           showGasStations(map);
@@ -69,12 +66,12 @@ function showGasStations(map) {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       for (let i = 0; i < 10; i++) {
         createMarker(results[i]);
-        let price = results[i].price_level || "no price found";
+        let price = results[i].price_level || "No Rating found";
         let vicinity = results[i].vicinity;
-        let rating = `${results[i].rating}/5`;
-        body = `price_level : ${price} out of 5,
-        <br> address : ${vicinity},
-        <br> rating : ${rating},`;
+        let rating = results[i].rating;
+        body = `Price Rating (out of 5): ${price},
+        <br> Street Address : ${vicinity},
+        <br> Customer service Rating (out of 5): ${rating},`;
         renderSearchResults2(results[i].name, body, i);
 
         $(`#accordion-btn-num${i}`).on("click", function () {
@@ -122,28 +119,20 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.open(map);
 }
 
-// function renderSearchResults() {
-//   var searchResult = document.createElement("div")
-//   var accordionItem = document.createElement("div")
-//   searchResult.classList.add("accordion")
-//   accordionItem.classList.add("")
-
-// }
-
 function renderSearchResults2(name, body, i) {
   var html = `
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button
           id="accordion-btn-num${i}"
-          class="accordion-button collapsed"
+          class="accordion-button collapsed has-text-weight-bold has-text-white is-size-4"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#collapse${i}"
           aria-expanded="false"
           aria-controls="collapse${i}"
         >
-          ${name}
+          Station Name: ${name}
         </button>
       </h2>
       <div
@@ -151,7 +140,7 @@ function renderSearchResults2(name, body, i) {
         class="accordion-collapse collapse"
         data-bs-parent="#accordionExample"
       >
-        <div class="accordion-body">
+        <div class="accordion-body has-text-white has-text-weight-bold is-size-5">
           ${body}
         </div>
       </div>
