@@ -47,8 +47,7 @@ function initMap() {
 }
 
 function showGasStations(map) {
-  console.log(map);
-  console.log(map.center.lat());
+  
   var lat = map.center.lat();
   var lng = map.center.lng();
   var location = new google.maps.LatLng(lat, lng);
@@ -86,7 +85,7 @@ function showGasStations(map) {
 }
 
 function createMarker(place) {
-  console.log(place);
+  
   if (!place.geometry || !place.geometry.location) return;
   const image = "./gas-station-red-icon.png";
   const marker = new google.maps.Marker({
@@ -106,7 +105,7 @@ function createMarker(place) {
     infoWindow.setContent(place.name || "");
     // show the info window
     infoWindow.open(map);
-    console.log("clicked a pin");
+    
   });
 }
 
