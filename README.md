@@ -6,8 +6,8 @@ This application helps the user find the nearest gas station in area.
 
 
 ## Project Screen Shot
-![gas-stations-near-me](link here)
 
+![Project-1](https://github.com/tjamesmcdonald/gas-stations-near-me/assets/105643185/8b322e6b-0c21-4b95-a8aa-dd43f477c1df)
 
 
 ## Links to Deployed Project
@@ -20,6 +20,7 @@ This application helps the user find the nearest gas station in area.
 ## Technologies Used
 - Google APIs
 - Bulma.io
+
 - VScode
 - Github
 - Git Bash
