@@ -36,13 +36,13 @@ p {
     font-family: 'Russo One', sans-serif !important;
 }
 .collapse {
-    /* background: yellow; */
+    
     background: linear-gradient(to right, #FFAE00, #4F7410);
     color: white;
 }
 
 .accordion-button {
-    /* background: yellow; */
+    
     background: linear-gradient(to right, #FFAE00, #4F7410);
     color: white;
 }
