@@ -1,7 +1,3 @@
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
 var searchResultsData;
 var header = document.querySelector("#header");
 let map, infoWindow, body;
@@ -21,7 +17,6 @@ function initMap() {
   locationButton.classList.add("button");
   locationButton.classList.add("is-warning");
   locationButton.classList.add("is-large");
-  // map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   header.appendChild(locationButton);
   locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
@@ -124,21 +119,13 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.open(map);
 }
 
-// function renderSearchResults() {
-//   var searchResult = document.createElement("div")
-//   var accordionItem = document.createElement("div")
-//   searchResult.classList.add("accordion")
-//   accordionItem.classList.add("")
-
-// }
-
 function renderSearchResults2(name, body, i) {
   var html = `
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button
           id="accordion-btn-num${i}"
-          class="accordion-button collapsed"
+          class="accordion-button collapsed has-text-weight-bold has-text-white is-size-4"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#collapse${i}"
@@ -153,7 +140,7 @@ function renderSearchResults2(name, body, i) {
         class="accordion-collapse collapse"
         data-bs-parent="#accordionExample"
       >
-        <div class="accordion-body">
+        <div class="accordion-body has-text-white has-text-weight-bold is-size-5">
           ${body}
         </div>
       </div>
