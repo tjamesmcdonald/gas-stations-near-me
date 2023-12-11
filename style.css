@@ -27,6 +27,14 @@ header {
 
 }
 
+p {
+    font-family: 'Hedvig Letters Serif', serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Russo One', sans-serif !important;
+}
+.custom-map-control-button{
+    font-family: 'Russo One', sans-serif !important;
+}
 .collapse {
     /* background: yellow; */
     background: linear-gradient(to right, #FFAE00, #4F7410);

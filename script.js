@@ -17,6 +17,7 @@ function initMap() {
   locationButton.classList.add("button");
   locationButton.classList.add("is-warning");
   locationButton.classList.add("is-large");
+  
   header.appendChild(locationButton);
   locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
